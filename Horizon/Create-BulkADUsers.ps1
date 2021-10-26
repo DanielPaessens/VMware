@@ -1,4 +1,9 @@
-﻿Import-Module ActiveDirectory
+﻿#
+# Create a number of testusers
+#   Add then to a user group Horizon Test Users
+#
+
+Import-Module ActiveDirectory
 $totalusers = 10
 for ($i=0; $i -lt $totalusers; $i++) 
  { 
@@ -9,9 +14,9 @@ for ($i=0; $i -lt $totalusers; $i++)
  
 New-ADUser `
  -Name $userName  `
- -Path  "CN=Users,DC=elegis,DC=be" `
+ -Path  "CN=Users,DC=example,DC=local" `
  -SamAccountName $userName `
- -AccountPassword (ConvertTo-SecureString "Azerty+123" -AsPlainText -Force) `
+ -AccountPassword (ConvertTo-SecureString "P@ssw0rd1!" -AsPlainText -Force) `
  -Enabled $true
  Add-ADGroupMember "Horizon Test Users" $userName;
 }
